@@ -11,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sba3.model.Employee;
-import com.sba3.service.EmployeeService;
+import com.sba3.model.Customer;
+import com.sba3.service.CustomerService;
 
 @RestController
 @RequestMapping(value="/")
-public class EmployeeRestController {
+public class CustomerRestController {
 
 	@Autowired
-	private EmployeeService empService;
+	private CustomerService empService;
 	
 	@GetMapping("/list")
-	public ResponseEntity<List<Employee>> getAllEmployees(){
+	public ResponseEntity<List<Customer>> getAllCustomers(){
 		
-		ResponseEntity<List<Employee>> resp = null;
+		ResponseEntity<List<Customer>> resp = null;
 		
-		List<Employee> employees = empService.getAllEmployees();
+		List<Customer> customers = empService.getAllCustomers();
 		
-		if(employees!=null)
-			resp = new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+		if(customers!=null)
+			resp = new ResponseEntity<List<Customer>>(customers, HttpStatus.OK);
 		else
 			resp = new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		
@@ -38,11 +38,11 @@ public class EmployeeRestController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
+	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer){
 		
-		ResponseEntity<Employee> resp = null;
+		ResponseEntity<Customer> resp = null;
 		
-		resp = new ResponseEntity<>(empService.addEmployee(employee), HttpStatus.OK);
+		resp = new ResponseEntity<>(empService.addCustomer(customer), HttpStatus.OK);
 		
 		return resp;
 		
